@@ -45,7 +45,7 @@ def save_to_csv(news_data):
             writer.writerow([
                 clean_tag(item["title"]),
                 convert_to_kst(item["pubDate"]),
-                clean_tag(item["description"]).replace('. ','./n'),
+                clean_tag(item["description"]).replace('. ','.\n'),
                 item["link"],
             ])
     print(f"{filename}에 뉴스 데이터를 저장했습니다.")

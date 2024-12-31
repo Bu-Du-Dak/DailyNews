@@ -2,7 +2,7 @@ name: Run Daily News
 
 on:
   schedule:
-    - cron: "0 21 * * *"
+    - cron: "0 12 * * *"
   workflow_dispatch:
 
 jobs:
