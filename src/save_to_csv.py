@@ -6,6 +6,9 @@ from datetime import datetime, timezone, timedelta
 
 # 날짜 한국 시 변환
 def convert_to_kst(published):
+    if not published:
+        print("날짜 데이터가 비어 있습니다.")
+        return "Invalid Date"
     try:
         # ISO 8601 형식 (NY Times)
         if "T" in published:
@@ -14,11 +17,11 @@ def convert_to_kst(published):
             # RFC 1123 형식 (네이버)
             parsed_date = datetime.strptime(published, "%a, %d %b %Y %H:%M:%S %z")
         
-        # KST 변환
+        # KST로 변환
         kst_date = parsed_date.astimezone(timezone(timedelta(hours=9)))
         return kst_date.strftime("%Y-%m-%d %H:%M:%S (KST)")
     except ValueError as e:
-        print(f"날짜 변환 실패: {e}")
+        print(f"날짜 변환 실패: {published} -> {e}")
         return "Invalid Date"
 
 
@@ -59,10 +62,14 @@ def save_to_csv(news_data, base_dir, folder_name):
         writer = csv.writer(file)
         writer.writerow(["Title","Published(Kor)","Description","Link"])
         for item in items:
-            writer.writerow([
-                clean_tag(item[title_field]),
-                convert_to_kst(item[published_field]),
-                clean_tag(item[description_field]).replace('. ','.\n'),
-                item[link_field],
-            ])
+            try:
+                title = clean_tag(item[title_field])
+                published = convert_to_kst(item[published_field])
+                description = clean_tag(item[description_field]).replace('. ', '.\n')
+                link = item[link_field]
+                writer.writerow([title, published, description, link])
+            except KeyError as e:
+                print(f"KeyError 발생: {e} (item: {item})")
+            except Exception as e:
+                print(f"Unexpected error: {e} (item: {item})")
     print(f"{filename}에 뉴스 데이터를 저장했습니다.")

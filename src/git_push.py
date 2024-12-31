@@ -10,6 +10,8 @@ def git_push():
     today = datetime.now().strftime("%Y-%m-%d")
     try:
         REPO_URL = f"https://{GIT_TOKEN}@github.com/Bu-Du-Dak/DailyNews.git"
+        subprocess.run(["git", "config", "--global", "user.name", "Bu-Du-Dak"], check=True)
+        subprocess.run(["git", "config", "--global", "user.email", "guri930219@gmail.com"], check=True)
         subprocess.run(["git", "add", "."], check=True)
         subprocess.run(["git", "commit", "-m", f"Auto-update {today} news data"], check=True)
         subprocess.run(["git", "push", REPO_URL, "main"], check=True)
