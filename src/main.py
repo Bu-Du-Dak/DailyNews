@@ -1,7 +1,11 @@
+import os
 from fetch_news import fetch_news
 from fetch_global_news import fetch_global_news
 from save_to_csv import save_to_csv
 from git_push import git_push
+
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.join(PROJECT_DIR, "../")
 
 if __name__ == "__main__":
     # 1. 뉴스 데이터 가져오기
@@ -10,13 +14,13 @@ if __name__ == "__main__":
     # 2. 가져온 데이터를 CSV로 저장
     all_success = True
     if news_data:
-        save_to_csv(news_data, base_dir="../news", folder_name="news")
+        save_to_csv(news_data, base_dir=BASE_DIR, folder_name="news")
     else:
         print("뉴스 데이터를 가져오지 못했습니다.")
         all_success = False
         
     if global_news_data:
-        save_to_csv(global_news_data, base_dir="../news", folder_name="global_news")
+        save_to_csv(global_news_data, base_dir=BASE_DIR, folder_name="global_news")
     else:
         print("글로벌 뉴스를 가져오지 못했습니다.")
         all_success = False

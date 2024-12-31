@@ -4,15 +4,6 @@ import re
 import html
 from datetime import datetime, timezone, timedelta
 
-
-PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-NEWS_DIR = os.path.join(PROJECT_DIR, "../news")
-
-# news 폴더 생성
-if not os.path.exists(NEWS_DIR):
-    os.makedirs(NEWS_DIR)
-    print(f"{NEWS_DIR} 폴더를 생성했습니다.")
-
 # 날짜 한국 시 변환
 def convert_to_kst(published):
     parsed_date = datetime.strptime(published,"%a, %d %b %Y %H:%M:%S %z")
