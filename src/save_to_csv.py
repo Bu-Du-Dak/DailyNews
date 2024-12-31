@@ -7,16 +7,20 @@ from datetime import datetime, timezone, timedelta
 # 날짜 한국 시 변환
 def convert_to_kst(published):
     try:
+        # ISO 8601 형식 (NY Times)
         if "T" in published:
             parsed_date = datetime.strptime(published, "%Y-%m-%dT%H:%M:%S%z")
         else:
-            # 네이버 형식 처리
+            # RFC 1123 형식 (네이버)
             parsed_date = datetime.strptime(published, "%a, %d %b %Y %H:%M:%S %z")
+        
+        # KST 변환
         kst_date = parsed_date.astimezone(timezone(timedelta(hours=9)))
         return kst_date.strftime("%Y-%m-%d %H:%M:%S (KST)")
     except ValueError as e:
-        print(f"날짜변환 실패: {e}")
+        print(f"날짜 변환 실패: {e}")
         return "Invalid Date"
+
 
 # HTML 태그 제거
 def clean_tag(item):
