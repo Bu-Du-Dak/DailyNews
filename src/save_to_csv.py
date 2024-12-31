@@ -4,27 +4,6 @@ import re
 import html
 from datetime import datetime, timezone, timedelta
 
-# 날짜 한국 시 변환
-def convert_to_kst(published):
-    if not published:
-        print("날짜 데이터가 비어 있습니다.")
-        return "Invalid Date"
-    try:
-        # ISO 8601 형식 (NY Times)
-        if "T" in published:
-            parsed_date = datetime.strptime(published, "%Y-%m-%dT%H:%M:%S%z")
-        else:
-            # RFC 1123 형식 (네이버)
-            parsed_date = datetime.strptime(published, "%a, %d %b %Y %H:%M:%S %z")
-        
-        # KST로 변환
-        kst_date = parsed_date.astimezone(timezone(timedelta(hours=9)))
-        return kst_date.strftime("%Y-%m-%d %H:%M:%S (KST)")
-    except ValueError as e:
-        print(f"날짜 변환 실패: {published} -> {e}")
-        return "Invalid Date"
-
-
 # HTML 태그 제거
 def clean_tag(item):
     clean_text = re.sub(r'<[^>]*>', '', item)
@@ -64,7 +43,7 @@ def save_to_csv(news_data, base_dir, folder_name):
         for item in items:
             try:
                 title = clean_tag(item[title_field])
-                published = convert_to_kst(item[published_field])
+                published = item[published_field]
                 description = clean_tag(item[description_field]).replace('. ', '.\n')
                 link = item[link_field]
                 writer.writerow([title, published, description, link])
