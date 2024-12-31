@@ -57,9 +57,9 @@ def save_to_csv(news_data, base_dir, folder_name):
         writer.writerow(["Title","Published(Kor)","Description","Link"])
         for item in items:
             writer.writerow([
-                clean_tag(item["title_field"]),
-                convert_to_kst(item["published_field"]),
-                clean_tag(item["description_field"]).replace('. ','.\n'),
-                item["link_field"],
+                clean_tag(item[title_field]),
+                convert_to_kst(item[published_field]),
+                clean_tag(item[description_field]).replace('. ','.\n'),
+                item[link_field],
             ])
     print(f"{filename}에 뉴스 데이터를 저장했습니다.")
