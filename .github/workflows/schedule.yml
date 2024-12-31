@@ -25,6 +25,8 @@ jobs:
           echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> .env
           echo "CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}" >> .env
           echo "API_URL=${{ secrets.API_URL }}" >> .env
+          echo "NY_API_KEY=${{ secrets.NY_API_KEY }}" >> .env
+          echo "NY_API_URL=${{ secrets.NY_API_URL }}" >> .env
       - name: run script
         run: python3 src/main.py
       - name: Commit and Push Changes
