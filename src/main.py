@@ -38,6 +38,5 @@ if __name__ == "__main__":
     # 3. 모든 작업 성공 시 Git 푸시
     if all_success:
         print("모든 뉴스 데이터를 성공적으로 저장했습니다. Git에 푸시합니다.")
-        git_push()
     else:
         print("일부 뉴스 데이터를 저장하지 못했습니다. Git 푸시는 생략합니다.")
