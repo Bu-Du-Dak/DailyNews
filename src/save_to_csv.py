@@ -15,8 +15,8 @@ if not os.path.exists(NEWS_DIR):
 
 # 날짜 한국 시 변환
 def convert_to_kst(published):
-    parsed_date = published.strptime(published,"%a, %d %b %Y %H:%M:%S %z")
-    kst_date = published.astimezone(timezone(timedelta(hours=9)))
+    parsed_date = datetime.strptime(published,"%a, %d %b %Y %H:%M:%S %z")
+    kst_date = parsed_date.astimezone(timezone(timedelta(hours=9)))
     return kst_date.strftime("%Y-%m-%d %H:%M:%S (KST)")
 
 # HTML 태그 제거
@@ -28,7 +28,7 @@ def clean_tag(item):
 
 # 파일 저장
 def save_to_csv(news_data):
-    today = datetime.now().strftime("%Y-%m-%d")
+    today = datetime.now()
     yyyy_mm = today.strftime("%Y-%m")
     yyyy_mm_dir = os.path.join(NEWS_DIR, yyyy_mm) 
     filename = os.path.join(yyyy_mm_dir, f"{today.strftime('%Y-%m-%d')}_news.csv")
