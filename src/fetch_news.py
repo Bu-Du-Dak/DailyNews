@@ -14,7 +14,7 @@ headers = {
 }
 params = {
     "query": '오늘',
-    "display": 10,
+    "display": 20,
     "sort": "date"
 }
 
