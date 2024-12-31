@@ -6,9 +6,17 @@ from datetime import datetime, timezone, timedelta
 
 # 날짜 한국 시 변환
 def convert_to_kst(published):
-    parsed_date = datetime.strptime(published,"%a, %d %b %Y %H:%M:%S %z")
-    kst_date = parsed_date.astimezone(timezone(timedelta(hours=9)))
-    return kst_date.strftime("%Y-%m-%d %H:%M:%S (KST)")
+    try:
+        if "T" in published:
+            parsed_date = datetime.strptime(published, "%Y-%m-%dT%H:%M:%S%z")
+        else:
+            # 네이버 형식 처리
+            parsed_date = datetime.strptime(published, "%a, %d %b %Y %H:%M:%S %z")
+        kst_date = parsed_date.astimezone(timezone(timedelta(hours=9)))
+        return kst_date.strftime("%Y-%m-%d %H:%M:%S (KST)")
+    except ValueError as e:
+        print(f"날짜변환 실패: {e}")
+        return "Invalid Date"
 
 # HTML 태그 제거
 def clean_tag(item):
