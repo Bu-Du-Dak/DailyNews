@@ -50,5 +50,5 @@ jobs:
           git config --global user.email "guri930219@gmail.com"
           git add news/
           git commit -m "Update news data at $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M:%S KST')"
-          git push origin main
+          git push https://Bu-Du-Dak:${{ secrets.GIT_TOKEN }}@github.com/Bu-Du-Dak/DailyNews.git main
           echo "Commit and push ended at: $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M:%S KST')"
