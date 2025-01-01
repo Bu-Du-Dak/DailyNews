@@ -1,14 +1,21 @@
 import os
 import requests
 from dotenv import load_dotenv
+from datetime import datetime
 
 load_dotenv()
 
 NY_API_URL = os.getenv('NY_API_URL')
 NY_API_KEY = os.getenv('NY_API_KEY')
 
+today = datetime.now().strftime("%Y%m%d")
+
 params = {
-    "api-key": NY_API_KEY
+    "api-key": NY_API_KEY,
+    "begin_date": today,
+    "end_date": today,
+    "page": 1
+    
 }
 def fetch_global_news ():
     try:

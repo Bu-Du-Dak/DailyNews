@@ -2,7 +2,7 @@ name: Run Daily News
 
 on:
   schedule:
-    - cron: "0 21 * * *"  
+    - cron: "0 21 * * *"
   workflow_dispatch:
 
 jobs:
@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-      
+
       - name: Set up python
         uses: actions/setup-python@v4
         with:
@@ -49,6 +49,6 @@ jobs:
           git config --global user.name "Bu-Du-Dak"
           git config --global user.email "guri930219@gmail.com"
           git add news/
-          git commit -m "Update news data at $(date -u)"
+          git commit -m "Update news data at $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M:%S KST')"
           git push origin main
-          echo "Commit and push ended at: $(date -u)"
+          echo "Commit and push ended at: $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M:%S KST')"
