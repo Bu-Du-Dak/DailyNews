@@ -4,12 +4,12 @@ from datetime import datetime
 from dotenv import load_dotenv
 
 load_dotenv()
-GIT_TOKEN = os.getenv('GIT_TOKEN')
+PAT = os.getenv('PAT')
 
 def git_push():
     today = datetime.now().strftime("%Y-%m-%d")
     try:
-        REPO_URL = f"https://{GIT_TOKEN}@github.com/Bu-Du-Dak/DailyNews.git"
+        REPO_URL = f"https://{PAT}@github.com/Bu-Du-Dak/DailyNews.git"
         subprocess.run(["git", "config", "--global", "user.name", "Bu-Du-Dak"], check=True)
         subprocess.run(["git", "config", "--global", "user.email", "guri930219@gmail.com"], check=True)
         subprocess.run(["git", "add", "."], check=True)

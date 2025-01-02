@@ -29,7 +29,7 @@ def convert_to_kst(published, folder_name):
     
 # 파일 저장
 def save_to_csv(news_data, base_dir, folder_name):
-    today = datetime.now()
+    today = datetime.now(timezone(timedelta(hours=9)))
     yyyy_mm = today.strftime("%Y-%m")
     target_dir = os.path.join(base_dir, folder_name, yyyy_mm)
     filename = os.path.join(target_dir, f"{today.strftime('%Y-%m-%d')}_news.csv")
