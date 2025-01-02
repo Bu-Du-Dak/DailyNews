@@ -47,7 +47,7 @@ jobs:
         run: |
           echo "Commit and push started at: $(date -u)"
           git config --global user.name "Hong JaeHoon"
-          git config --global user.email "guri930219@gmail.com"
+          git config --global user.email "Bu-Du-Dak@users.noreply.github.com"
           git add news/
           git commit -m "Update news data at $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M:%S KST')"
           git push https://Bu-Du-Dak:${{ secrets.GIT_TOKEN }}@github.com/Bu-Du-Dak/DailyNews.git main
