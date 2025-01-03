@@ -29,7 +29,6 @@ def fetch_global_news ():
         response = requests.get(GLOBAL_API_URL,params=params, headers=headers)
         response.raise_for_status()
         data = response.json()
-        print(f"API 응답 데이터: {data}")
         return data
     except requests.exceptions.RequestException as e :
         print(f"Fail: {e}")
@@ -39,6 +38,6 @@ if __name__ == "__main__":
     news_data = fetch_global_news()
     if news_data:
         print("뉴스 데이터를 성공적으로 가져왔습니다!")
-        # print(news_data)
+        print(news_data)
     else:
         print("뉴스 데이터를 가져오지 못했습니다.")
