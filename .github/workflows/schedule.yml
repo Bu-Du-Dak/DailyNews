@@ -31,8 +31,8 @@ jobs:
           echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> .env
           echo "CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}" >> .env
           echo "API_URL=${{ secrets.API_URL }}" >> .env
-          echo "NY_API_KEY=${{ secrets.NY_API_KEY }}" >> .env
-          echo "NY_API_URL=${{ secrets.NY_API_URL }}" >> .env
+          echo "NY_API_KEY=${{ secrets.GLOBAL_API_KEY }}" >> .env
+          echo "NY_API_URL=${{ secrets.GLOBAL_API_URL }}" >> .env
           echo "Environment setup ended at: $(date -u)"
 
       - name: Run script
