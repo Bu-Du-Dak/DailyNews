@@ -27,6 +27,29 @@ def convert_to_kst(published, folder_name):
         print(f"날짜 변환 실패: {e} (published: {published})")
         return "Invalid Date"
     
+# 글로벌 뉴스 데이터 가공
+def process_articles(data):
+    articles = data.get("articles", [])
+    processed_articles = []
+
+    for article in articles:
+        try:
+            title = article.get("title", "N/A")
+            published_at = article.get("publishedAt", "N/A")
+            description = article.get("description", "N/A")
+            url = article.get("url", "N/A")
+            
+            # 날짜 포맷 변경
+            if published_at != "N/A":
+                published_date = datetime.strptime(published_at, "%Y-%m-%dT%H:%M:%SZ")
+                published_at = published_date.strftime("%Y-%m-%d %H:%M:%S")
+            
+            processed_articles.append([title, published_at, description, url])
+        except Exception as e:
+            print(f"데이터 처리 중 오류 발생: {e}")
+    
+    return processed_articles
+
 # 파일 저장
 def save_to_csv(news_data, base_dir, folder_name):
     today = datetime.now(timezone(timedelta(hours=9)))
@@ -38,11 +61,11 @@ def save_to_csv(news_data, base_dir, folder_name):
         os.makedirs(target_dir)
         print(f"{target_dir} 폴더를 생성했습니다.")
 
-    if folder_name == "global_news":  # NY Times 데이터
-        items = news_data.get("results", [])
+    if folder_name == "global_news": 
+        items = news_data.get("articles", [])
         title_field = "title"
-        published_field = "published_date"
-        description_field = "abstract"
+        published_field = "publishedAt"
+        description_field = "description"
         link_field = "url"
     else:  # 네이버 뉴스 데이터
         items = news_data.get("items", [])
