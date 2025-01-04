@@ -2,7 +2,7 @@ name: Run Daily News
 
 on:
   schedule:
-    - cron: "0 21 * * *"
+    - cron: "0 12 * * *"
   workflow_dispatch:
 
 jobs:
@@ -52,3 +52,7 @@ jobs:
           git commit -m "Update news data at $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M:%S KST')"
           git push https://Bu-Du-Dak:${{ secrets.PAT }}@github.com/Bu-Du-Dak/DailyNews.git main
           echo "Commit and push ended at: $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M:%S KST')"
+      - name: Check Git Commit Author
+        run: |
+          echo "Checking commit author information:"
+          git log -1 --pretty=format:"Commit Author: %an <%ae> | Committer: %cn <%ce>"
