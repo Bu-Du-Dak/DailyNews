@@ -41,18 +41,18 @@ jobs:
           python3 src/main.py
           echo "Script execution ended at: $(date -u)"
 
-      - name: Commit and Push Changes
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
-        run: |
-          echo "Commit and push started at: $(date -u)"
-          git config --global user.name "Bu-Du-Dak"
-          git config --global user.email "guri930219@gmail.com"
-          git add news/
-          git commit -m "Update news data at $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M:%S KST')"
-          git push https://Bu-Du-Dak:${{ secrets.PAT }}@github.com/Bu-Du-Dak/DailyNews.git main
-          echo "Commit and push ended at: $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M:%S KST')"
-      - name: Check Git Commit Author
-        run: |
-          echo "Checking commit author information:"
-          git log -1 --pretty=format:"Commit Author: %an <%ae> | Committer: %cn <%ce>"
+      #- name: Commit and Push Changes
+        #env:
+          #GITHUB_TOKEN: ${{ secrets.PAT }}
+        #run: |
+          #echo "Commit and push started at: $(date -u)"
+          #git config --global user.name "Bu-Du-Dak"
+          #git config --global user.email "guri930219@gmail.com"
+          #git add news/
+          #git commit -m "Update news data at $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M:%S KST')"
+          #git push https://Bu-Du-Dak:${{ secrets.PAT }}@github.com/Bu-Du-Dak/DailyNews.git main
+          #echo "Commit and push ended at: $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M:%S KST')"
+      #- name: Check Git Commit Author
+        #run: |
+          #echo "Checking commit author information:"
+          #git log -1 --pretty=format:"Commit Author: %an <%ae> | Committer: %cn <%ce>"
