@@ -103,7 +103,7 @@ export default function NewsHero({
         <Eyebrow>Daily Briefing</Eyebrow>
         <Title>Daily News.</Title>
         <Description>
-          날짜별로 정리된 국내외 주요 뉴스를 빠르게 확인해보세요.
+          날짜별로 정리된 국내외 주요 뉴스를 빠르게 확인해보세요
         </Description>
       </HeroCopy>
 

@@ -1,6 +1,6 @@
 ## Daily News
 
-기존 Python 수집 스크립트로 국내 뉴스와 글로벌 뉴스를 CSV로 저장하고, Next.js 화면에서 날짜별로 조회할 수 있는 프로젝트입니다.
+Python 수집 스크립트로 GNews 헤드라인을 국내/글로벌 CSV로 저장하고, Next.js 화면에서 날짜별로 조회할 수 있는 프로젝트입니다.
 
 ### Python 수집 실행
 
@@ -21,7 +21,12 @@ npm run dev
 
 ### 현재 구조
 
-- `src/`: 네이버/글로벌 뉴스 수집 및 CSV 저장
+- `src/`: GNews 기반 국내/글로벌 뉴스 수집 및 CSV 저장
 - `news/`: 국내 뉴스 CSV 아카이브
 - `global_news/`: 글로벌 뉴스 CSV 아카이브
-- `app/`, `lib/`: Next.js 기반 조회 UI
+- `app/`: Next.js 기반 조회 UI
+
+### 환경 변수
+
+- `GNEWS_API_KEY` 또는 `GLOBAL_API_KEY`: GNews API 키
+- `GNEWS_API_URL` 또는 `GLOBAL_API_URL`: 기본값은 `https://gnews.io/api/v4/top-headlines`

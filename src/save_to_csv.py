@@ -13,11 +13,9 @@ def clean_tag(item):
 
 def convert_to_kst(published, folder_name):
     try:
-        if folder_name == "global_news":  # NY Times 데이터
-            # ISO 8601 형식 처리
-            parsed_date = datetime.strptime(published, "%Y-%m-%dT%H:%M:%S%z")
-        else:  # 네이버 뉴스 데이터
-            # RFC 1123 형식 처리
+        if "T" in published:
+            parsed_date = datetime.fromisoformat(published.replace("Z", "+00:00"))
+        else:
             parsed_date = datetime.strptime(published, "%a, %d %b %Y %H:%M:%S %z")
         
         # 한국 시간(KST)으로 변환
@@ -68,11 +66,11 @@ def save_to_csv(news_data, base_dir, folder_name):
         description_field = "description"
         link_field = "url"
     else:  # 네이버 뉴스 데이터
-        items = news_data.get("items", [])
+        items = news_data.get("items") or news_data.get("articles", [])
         title_field = "title"
-        published_field = "pubDate"
+        published_field = "pubDate" if news_data.get("items") else "publishedAt"
         description_field = "description"
-        link_field = "link"
+        link_field = "link" if news_data.get("items") else "url"
 
     with open(filename, mode="w", newline="", encoding="utf-8-sig") as file:
         writer = csv.writer(file)
