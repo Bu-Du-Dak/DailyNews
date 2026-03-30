@@ -3,8 +3,6 @@ from gnews_client import fetch_top_headlines
 LOCAL_REQUESTS = [
     ("general", {"category": "general", "country": "kr", "lang": "ko"}),
     ("nation", {"category": "nation", "country": "kr", "lang": "ko"}),
-    ("business", {"category": "business", "country": "kr", "lang": "ko"}),
-    ("technology", {"category": "technology", "country": "kr", "lang": "ko"}),
 ]
 
 
