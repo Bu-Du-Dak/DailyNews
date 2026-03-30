@@ -13,31 +13,29 @@ if __name__ == "__main__":
     global_news_data = fetch_global_news()
 
     # 2. 가져온 데이터를 CSV로 저장
-    all_success = True  # 성공 여부
+    saved_any_data = False
 
     if news_data:
         try:
             save_to_csv(news_data, base_dir=BASE_DIR, folder_name="news")
+            saved_any_data = True
         except Exception as e:
-            print(f"네이버 뉴스 저장 중 에러 발생: {e}")
-            all_success = False
+            print(f"국내 뉴스 저장 중 에러 발생: {e}")
     else:
-        print("네이버 뉴스를 가져오지 못했습니다.")
-        all_success = False
+        print("국내 뉴스를 가져오지 못했습니다.")
 
     if global_news_data:
         try:
             save_to_csv(global_news_data, base_dir=BASE_DIR, folder_name="global_news")
+            saved_any_data = True
         except Exception as e:
             print(f"글로벌 뉴스 저장 중 에러 발생: {e}")
-            all_success = False
     else:
         print("글로벌 뉴스를 가져오지 못했습니다.")
-        all_success = False
 
-    # 3. 모든 작업 성공 시 Git 푸시
-    if all_success:
-        print("모든 뉴스 데이터를 성공적으로 저장했습니다. Git에 푸시합니다.")
+    # 3. 하나라도 저장에 성공하면 Git 푸시
+    if saved_any_data:
+        print("저장된 뉴스 데이터가 있어 Git에 푸시합니다.")
         git_push()
     else:
-        print("일부 뉴스 데이터를 저장하지 못했습니다. Git 푸시는 생략합니다.")
+        print("저장된 뉴스 데이터가 없어 Git 푸시는 생략합니다.")
