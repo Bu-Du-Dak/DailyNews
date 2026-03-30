@@ -1,10 +1,10 @@
 from gnews_client import fetch_top_headlines
 
 GLOBAL_REQUESTS = [
-    ("world", {"topic": "world", "lang": "en"}),
-    ("business", {"topic": "business", "lang": "en"}),
-    ("technology", {"topic": "technology", "lang": "en"}),
-    ("science", {"topic": "science", "lang": "en"}),
+    ("world", {"category": "world", "lang": "en"}),
+    ("business", {"category": "business", "lang": "en"}),
+    ("technology", {"category": "technology", "lang": "en"}),
+    ("science", {"category": "science", "lang": "en"}),
 ]
 
 
