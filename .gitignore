@@ -1,2 +1,10 @@
-venv/
+.next
+node_modules
+dist
+out
+
+# Python
+.venv
+venv
+__pycache__
 .env
